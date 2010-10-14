@@ -1,5 +1,6 @@
 package 
 {
+
    /**
     * This file has been automatically created using
     * #!/usr/bin/ruby script/generate suite
@@ -7,15 +8,14 @@ package
     * modifications will be lost!
     */
 
-   import flexunit.framework.TestSuite;<% test_case_classes.each do |test_case|  %>
+   import org.flexunit.runners.Suite;<% test_case_classes.each do |test_case|  %>
    import <%= test_case %>;<% end  %>
 
-   public class AllTests extends TestSuite 
-   {
-
-      public function AllTests() 
-      {<% test_case_classes.each do |test_case|  %>
-         addTest(new <%= test_case %>());<% end  %>
-      }
+   [Suite]
+   [RunWith("org.flexunit.runners.Suite")]
+   public class AllTests
+   {<% test_case_classes_short.each_with_index do |test_case, index|  %>
+      public var test<%= index %>: <%= test_case %><% end  %>
    }
+   
 }

@@ -1,37 +1,30 @@
 package <%= package_name %> 
 {
 
-   import flexunit.framework.TestCase;
+   import org.flexunit.Assert;
+   import <%= full_class_name %>;
 
-   public class <%= test_case_name  %> extends TestCase 
+   public class <%= test_case_name  %>
    {
       private var <%= instance_name %>:<%= class_name %>;
-
-      public function <%= test_case_name %>(methodName:String=null)
+      
+      [Before]
+      public function exampleSetUp():void 
       {
-         super(methodName)
-      }
-
-      override protected function setUp():void 
-      {
-         super.setUp();
          <%= instance_name %> = new <%= class_name %>();
       }
 
-      override protected function tearDown():void 
+      [After]
+      public function exampleTearDown():void 
       {
-         super.tearDown();
          <%= instance_name %> = null;
       }
 
-      public function testInstantiated():void 
+      [Test]
+      public function exampleTest():void 
       {
-         assertTrue("<%= instance_name %> is <%= class_name %>", <%= instance_name %> is <%= class_name %>);
-      }
-
-      public function testFailure():void 
-      {
-         assertTrue("Failing test", false);
+         Assert.assertTrue("<%= instance_name %> is <%= class_name %>", <%= instance_name %> is <%= class_name %>);
       }
    }
+   
 }
